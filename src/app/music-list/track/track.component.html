@@ -1,0 +1,12 @@
+<div class="card-deck col-md-12">
+  <div *ngFor="let track of tracks; let i = index">
+      <div class="card col-md-4">
+        <img class="card-img-top" [src]="track.image[1].src" alt="Card image cap"  
+            style="max-height: 150px;max-width: 250px;">
+        <div class="card-body">
+          <p class="card-text">{{ track.name }}</p>
+          <p class="card-text"><strong>Artist:</strong>{{track.artist["name"]}}</p>
+        </div>
+      </div>
+  </div>
+</div>

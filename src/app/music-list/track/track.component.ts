@@ -11,8 +11,6 @@ import { Subscription } from 'rxjs';
 export class TrackComponent implements OnInit, OnDestroy {
   tracks : Track[];
   subscription : Subscription;
-  maxCardsInARow: number = 3;
-  rows: number;
 
   constructor(private musicService: MusicService) { }
 
@@ -22,7 +20,6 @@ export class TrackComponent implements OnInit, OnDestroy {
       .subscribe(
           ()=>{
             this.tracks = this.musicService.getTrackList();
-            this.rows = this.tracks.length/3;
       });
   }
 

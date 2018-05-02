@@ -30,10 +30,11 @@ export class MusicService {
 
     setTrackList(tracks: Track[]){
         this.trackList = tracks;
-        this.musicTrackListChange.next(this.trackList.slice());
+        this.musicTrackListChange.next(this.trackList);
     }
 
     getTrackList(){
+        console.log("register is clicked");
         return this.trackList.slice();
     }
 

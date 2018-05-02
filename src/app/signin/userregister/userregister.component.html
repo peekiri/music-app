@@ -7,7 +7,7 @@
                 Register
             </div>
             <div class="card-body">
-              <form (ngSubmit)="onRegister()" [formGroup]="registerForm">
+              <form (ngSubmit)="onUserRegister()" [formGroup]="registerForm">
                 <div formGroupName="registerData">  
 
                   <div class="row">
@@ -81,10 +81,21 @@
                             && registerForm.get('registerData.phone').touched"
                               class="help-block"> Please enter a valid phone number</span>
                     </div>
+
+                    <!-- calendar for date of birth -->
+                    <div class="form-group col-md-6 col-sm-8 col-xs-12">
+                      <label for="dob">Date Of Birth:</label>
+                      <input type="text" formControlName="dob" class="form-control" >
+                      <span  
+                      *ngIf="!registerForm.get('registerData.dob').valid  
+                          && registerForm.get('registerData.dob').touched"
+                            class="help-block"> Please enter a valid date of birth</span>
+                    </div>
+
                 </div>
                   
                   <button class="btn btn-primary" type="submit" 
-                      [disabled]="!registerForm.valid" (click)="onUserRegister()">Register</button>
+                      [disabled]="!registerForm.valid">Register</button>
 
                 </form>
           

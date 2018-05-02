@@ -15,3 +15,7 @@
     transition: .5s ease;
     background-color: #008CBA;
 }
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}

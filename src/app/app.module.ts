@@ -18,7 +18,6 @@ import { TrackComponent } from './music-list/track/track.component';
 import { UserService } from './signin/user.service';
 import { MusicService } from './music-list/music.service';
 
-
 @NgModule({
   declarations: [
     AppComponent,

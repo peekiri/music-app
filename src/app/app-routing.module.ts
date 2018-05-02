@@ -9,7 +9,7 @@ import { AlbumComponent } from "./music-list/album/album.component";
 import { TrackComponent } from "./music-list/track/track.component";
 
 const appRoutes: Routes =  [
-    {path:'', component: UserloginComponent, pathMatch: 'full'},
+    {path:'', pathMatch: 'full', redirectTo: '/login'},
     {path:'login', component: UserloginComponent},
     {path:'register', component: UserregisterComponent},
     {path:'forgotpwd', component: ForgotpwdComponent},

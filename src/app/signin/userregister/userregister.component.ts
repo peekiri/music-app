@@ -4,6 +4,7 @@ import { emailValidator } from '../../shared/validators/email.validator';
 import { passwordValidator } from '../../shared/validators/password.validator';
 import { phonenumberValidator } from '../../shared/validators/phonenumber.validator';
 import { passwordMatchValidator } from '../../shared/validators/passwordmatch.validator';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-userregister',
@@ -14,7 +15,8 @@ export class UserregisterComponent implements OnInit {
 
   registerForm : FormGroup;
 
-  constructor() { }
+  constructor(private userService : UserService) { 
+  }
 
   ngOnInit() {
     this.registerForm =  new FormGroup({
@@ -27,6 +29,11 @@ export class UserregisterComponent implements OnInit {
         'phone' : new FormControl('',[Validators.required,phonenumberValidator])
       })
     }, {validators: passwordMatchValidator});
+  }
+
+  // Register the user.
+  onUserRegister() {
+      this.userService.saveRegisteredUser();
   }
 
 }

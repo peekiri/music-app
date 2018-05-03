@@ -1,52 +1,44 @@
-<div class="container">
-  <div class="row top30">
-      <div class="flex-centred col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 clearfix">
-        
-        <div class="card">
-          <div class="card-header">
-              Login
-          </div>
-          <div class="card-body">
-            <form  [formGroup]="userLoginForm" (ngSubmit)="onLogin()">
-                
-                <div formGroupName="userData"> 
-                  <!-- Email address of the user -->
-                  <div class="form-group col-md-6">
-                    <label for="email">Email Address:</label>
-                    <input type="email" id="email" formControlName="email" class="form-control" >
-                    <span  
-                    *ngIf="!userLoginForm.get('userData.email').valid  && userLoginForm.get('userData.email').touched"
-                    class="help-block"> Please enter a valid username</span>
-                  </div>
-          
-                  <!-- Password of the user -->
-                  <div class="form-group col-md-6">
-                    <label for="password">Password:</label>
-                    <input type="password"  id="password" formControlName="password" class="form-control">
-                    <span  
-                    *ngIf="!userLoginForm.get('userData.password').valid  && userLoginForm.get('userData.password').touched"
-                    class="help-block"> Please enter the password</span>
-                  </div>
-              </div>
-        
-                <!-- Forgot password -->
-                <div class="form-group  col-md-6">
-                  <input type="checkbox" [(ngModel)]="isChecked" [ngModelOptions]="{standalone: true}"><label for="forgotPassword" >Forgot Password?</label>
-                </div>
-        
-                <div *ngIf="!isChecked">
-                  <button class="btn btn-primary" type="submit"
-                    [disabled]="!userLoginForm.valid">Sign In</button>
-                </div>
-        
-              </form>
-        
-              <div *ngIf="isChecked">
-                <button class="btn btn-danger" (click)="onForgotPassword()">Forgot Password</button>
-              </div>
-          </div>
-      </div>
-
+  <div class="card">
+    <div class="card-header">
+        Login
     </div>
-  </div>
+    <div class="card-body">
+      <form  [formGroup]="userLoginForm" (ngSubmit)="onLogin()">
+          
+          <div formGroupName="userData"> 
+            <!-- Email address of the user -->
+            <div class="form-group col-md-6">
+              <label for="email">Email Address:</label>
+              <input type="email" id="email" formControlName="email" class="form-control" >
+              <span  
+              *ngIf="!userLoginForm.get('userData.email').valid  && userLoginForm.get('userData.email').touched"
+              class="help-block"> Please enter a valid username</span>
+            </div>
+    
+            <!-- Password of the user -->
+            <div class="form-group col-md-6">
+              <label for="password">Password:</label>
+              <input type="password"  id="password" formControlName="password" class="form-control">
+              <span  
+              *ngIf="!userLoginForm.get('userData.password').valid  && userLoginForm.get('userData.password').touched"
+              class="help-block"> Please enter the password</span>
+            </div>
+        </div>
+  
+          <!-- Forgot password -->
+          <div class="form-group  col-md-6">
+            <input type="checkbox" [(ngModel)]="isChecked" [ngModelOptions]="{standalone: true}"><label for="forgotPassword" >Forgot Password?</label>
+          </div>
+  
+          <div *ngIf="!isChecked">
+            <button class="btn btn-primary" type="submit"
+              [disabled]="!userLoginForm.valid">Sign In</button>
+          </div>
+  
+        </form>
+  
+        <div *ngIf="isChecked">
+          <button class="btn btn-danger" (click)="onForgotPassword()">Forgot Password</button>
+        </div>
+    </div>
 </div>

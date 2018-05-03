@@ -24,11 +24,11 @@ export class UserregisterComponent implements OnInit {
         'firstName' : new FormControl('',[Validators.required]),
         'lastName' : new FormControl('',[Validators.required]),
         'userName' : new FormControl('',[Validators.required]),
-        'email' : new FormControl('',[Validators.required, emailValidator]),
+        'emailAddress' : new FormControl('',[Validators.required, emailValidator]),
         'password' : new FormControl('',[Validators.required, passwordValidator]),
         'confirmPassword' : new FormControl('',[Validators.required]),
-        'phone' : new FormControl('',[Validators.required,phonenumberValidator]),
-        'dob' : new FormControl('',[Validators.required])
+        'phoneNumber' : new FormControl('',[Validators.required,phonenumberValidator]),
+        'dateOfBirth' : new FormControl('',[Validators.required])
       })
     }, {validators: passwordMatchValidator});
   }
@@ -36,7 +36,7 @@ export class UserregisterComponent implements OnInit {
   // Register the user.
   onUserRegister() {
 
-      this.userService.saveRegisteredUser();
+      this.userService.saveRegisteredUser(this.registerForm.value.registerData);
   }
 
 }

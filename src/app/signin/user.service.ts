@@ -1,20 +1,32 @@
 import { Injectable } from "@angular/core";
-import { User } from "firebase";
 import { Subject } from "rxjs";
+import { Http, Headers, RequestOptions } from "@angular/http";
+import { User } from "../models/user.model";
 
 @Injectable()
 export class UserService {
 
     private user : User;
+    private userUrl = "http://localhost:8008/user/";
 
     userDataChange = new Subject<User>();
+
+    constructor(private http : Http) {}
 
     getLoggedInUser(){
 
     }
 
-    saveRegisteredUser(){
+    saveRegisteredUser(data : object){
+        let bodyStringify = JSON.stringify(data);
+        let headers = new Headers({'Content-type' : 'application/json'});
+        let options = new RequestOptions({headers : headers});
 
+        this.http.post(this.userUrl+"register", bodyStringify , options).
+            map(() => {
+                
+            })
+            .subscribe();
     }
 
     userLogout(){

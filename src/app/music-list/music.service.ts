@@ -22,8 +22,8 @@ export class MusicService {
                     const tracks : Track[] = response.json();
                     return tracks;
                 }).subscribe(
-                    (tracks: Track[]) => {
-                        this.setTrackList(tracks["track"]);
+                    (tracksResponse: Track[]) => {
+                        this.setTrackList(tracksResponse["track"]);
                     }
                 );
     }

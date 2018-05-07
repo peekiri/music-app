@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import { Http, Headers, RequestOptions } from "@angular/http";
 import { User } from "../models/user.model";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class UserService {
@@ -11,7 +12,7 @@ export class UserService {
 
     userDataChange = new Subject<User>();
 
-    constructor(private http : Http) {}
+    constructor(private http : Http, private router : Router) {}
 
     getLoggedInUser(){
 
@@ -24,9 +25,8 @@ export class UserService {
 
         this.http.post(this.userUrl+"register", bodyStringify , options).
             map(() => {
-                
-            })
-            .subscribe();
+                this.router.navigate(["login"]);
+            }).catch();
     }
 
     userLogout(){

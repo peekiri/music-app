@@ -26,7 +26,7 @@ export class UserService {
         this.http.post(this.userUrl+"register", bodyStringify , options).
             map(() => {
                 this.router.navigate(["login"]);
-            }).catch();
+            }).subscribe();
     }
 
     userLogout(){

@@ -11,10 +11,12 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class UserloginComponent implements OnInit {
   userLoginForm: FormGroup;
+  loginError = '';
 
   constructor(private router : Router, private authService : AuthService) { }
 
   ngOnInit() {
+
     this.userLoginForm = new FormGroup({
       'userData': new FormGroup({
         'email': new FormControl(null, [Validators.required, emailValidator]),
@@ -25,8 +27,14 @@ export class UserloginComponent implements OnInit {
 
   onLogin(){
     this.authService.signInValidate( this.userLoginForm.value.userData['email'],
-        this.userLoginForm.value.userData['password']);
-    this.router.navigate(['/dashboard']);
+        this.userLoginForm.value.userData['password'])
+        .subscribe((validUser) => {
+          if(validUser){
+            this.router.navigate(['/dashboard']);
+          } 
+        }, error => {
+            this.loginError = "Email Address or Password is not correct!!!!";
+        });
   }
 
   onForgotPassword(){

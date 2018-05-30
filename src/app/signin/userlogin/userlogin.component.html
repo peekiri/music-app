@@ -34,11 +34,15 @@
             <button class="btn btn-primary" type="submit"
               [disabled]="!userLoginForm.valid">Sign In</button>
           </div>
-  
+
+          <br>
+          
+          <div *ngIf="loginError" class="alert alert-danger">{{loginError}}</div>
         </form>
   
         <div *ngIf="isChecked">
           <button class="btn btn-danger" (click)="onForgotPassword()">Forgot Password</button>
         </div>
+        
     </div>
 </div>

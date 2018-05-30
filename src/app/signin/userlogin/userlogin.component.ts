@@ -16,7 +16,6 @@ export class UserloginComponent implements OnInit {
   constructor(private router : Router, private authService : AuthService) { }
 
   ngOnInit() {
-
     this.userLoginForm = new FormGroup({
       'userData': new FormGroup({
         'email': new FormControl(null, [Validators.required, emailValidator]),

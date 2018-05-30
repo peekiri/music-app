@@ -5,6 +5,7 @@ import { passwordValidator } from '../../shared/validators/password.validator';
 import { phonenumberValidator } from '../../shared/validators/phonenumber.validator';
 import { passwordMatchValidator } from '../../shared/validators/passwordmatch.validator';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-userregister',
@@ -14,9 +15,9 @@ import { UserService } from '../user.service';
 export class UserregisterComponent implements OnInit {
 
   registerForm : FormGroup;
+  registrationFormError= '';
 
-  constructor(private userService : UserService) { 
-  }
+  constructor(private userService : UserService, private router : Router) { }
 
   ngOnInit() {
     this.registerForm =  new FormGroup({
@@ -35,8 +36,16 @@ export class UserregisterComponent implements OnInit {
 
   // Register the user.
   onUserRegister() {
-
-      this.userService.saveRegisteredUser(this.registerForm.value.registerData);
+      this.userService.saveRegisteredUser(this.registerForm.value.registerData)
+        .subscribe(
+          registrationSuccessful => {
+            if(registrationSuccessful) {
+                this.router.navigate(["login"]);
+            }
+          }, error => {
+                this.registrationFormError = "Incorrect data is entered!!";
+          }
+        );
   }
 
 }

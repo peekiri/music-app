@@ -90,11 +90,10 @@
 
       </div>
         
-        <button class="btn btn-primary" type="submit" 
-            [disabled]="!registerForm.valid">Register</button>
-
+      <button class="btn btn-primary" type="submit" 
+          [disabled]="!registerForm.valid">Register</button>
+      
+      <div *ngIf="registrationFormError" class="alert alert-danger">{{registrationFormError}}</div>
       </form>
-
-
   </div>
 </div>

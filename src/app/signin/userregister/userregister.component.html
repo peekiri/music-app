@@ -93,6 +93,8 @@
       <button class="btn btn-primary" type="submit" 
           [disabled]="!registerForm.valid">Register</button>
       
+      <br>
+      
       <div *ngIf="registrationFormError" class="alert alert-danger">{{registrationFormError}}</div>
       </form>
   </div>

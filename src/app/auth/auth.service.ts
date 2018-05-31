@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AuthService{
 
+    loginUrl : string = "http://localhost:8008/login";
+
     constructor(private router: Router, private http: Http) {}
 
     signInValidate ( email : string, password : string ): Observable<boolean>{
@@ -20,7 +22,7 @@ export class AuthService{
 
         let options = new RequestOptions({headers : headers});
         
-        return this.http.post('http://localhost:8008/login',
+        return this.http.post(this.loginUrl,
             JSON.stringify({emailAddress: email, password: password}), options).
             map((response: Response)=>{
                 if(response.ok) {

@@ -1,35 +1,23 @@
 import { Injectable } from "@angular/core";
-import * as firebase from "firebase";
 import { Router } from "@angular/router";
-import { Http, Headers, RequestOptions, Response } from "@angular/http";
+import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class AuthService{
+export class AuthService {
+    successfulLogin : boolean = true;
 
     loginUrl : string = "http://localhost:8008/login";
 
-    constructor(private router: Router, private http: Http) {}
+    constructor(private router: Router, private http: HttpClient) {}
 
-    signInValidate ( email : string, password : string ): Observable<boolean>{
-
-        let headers = new Headers();
-
-        headers.append("Access-Control-Allow-Origin", "*");
-        headers.append("Access-Control-Allow-Credentials", "true"); 
-        headers.append("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, POST, PUT, DELETE");
-        headers.append("Content-Type", "application/json,application/x-www-form-urlencoded");
-
-        let options = new RequestOptions({headers : headers});
+    signInValidate ( email : string, password : string ) : Observable<any> {
         
-        return this.http.post(this.loginUrl,
-            JSON.stringify({emailAddress: email, password: password}), options).
-            map((response: Response)=>{
-                if(response.ok) {
-                    localStorage.setItem('validUser', 'true');
-                    return true;
-                }
+        return this.http.post<any>(this.loginUrl,
+            JSON.stringify({emailAddress: email, password: password}), {
+                observe : 'response'
             });
+
     }
 
 }

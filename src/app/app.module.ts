@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from "@angular/http";
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
 import { ForgotpwdComponent } from './signin/forgotpwd/forgotpwd.component';
@@ -17,6 +17,9 @@ import { AlbumComponent } from './music-list/album/album.component';
 import { TrackComponent } from './music-list/track/track.component';
 import { UserService } from './signin/user.service';
 import { MusicService } from './music-list/music.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './shared/interceptors/jwtinterceptor';
+import { HttpHeaderInterceptor } from "./shared/interceptors/httpheaderinterceptor";
 
 @NgModule({
   declarations: [
@@ -35,9 +38,20 @@ import { MusicService } from './music-list/music.service';
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpClientModule
   ],
-  providers: [AuthService, AuthGuard, UserService, MusicService],
+  providers: [AuthService, AuthGuard, UserService, MusicService,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass: HttpHeaderInterceptor,
+      multi: true
+    },
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

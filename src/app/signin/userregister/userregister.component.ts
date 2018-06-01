@@ -20,6 +20,9 @@ export class UserregisterComponent implements OnInit {
   constructor(private userService : UserService, private router : Router) { }
 
   ngOnInit() {
+
+    localStorage.clear();
+
     this.registerForm =  new FormGroup({
       'registerData' : new FormGroup({
         'firstName' : new FormControl('',[Validators.required]),
@@ -39,7 +42,7 @@ export class UserregisterComponent implements OnInit {
       this.userService.saveRegisteredUser(this.registerForm.value.registerData)
         .subscribe(
           registrationSuccessful => {
-            if(registrationSuccessful) {
+            if(registrationSuccessful.status == 202) {
                 this.router.navigate(["login"]);
             }
           }, error => {

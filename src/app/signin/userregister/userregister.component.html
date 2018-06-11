@@ -1,101 +1,113 @@
-<div class="card">
-  <div class="card-header">
-      Register
-  </div>
-  <div class="card-body">
-    <form (ngSubmit)="onUserRegister()" [formGroup]="registerForm">
-      <div formGroupName="registerData">  
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="paddingTop">
 
-        <div class="row">
-          <!-- First Name of User -->
-              <div class="form-group col-md-6 col-xs-12 col-sm-12">
-                  <label for="firstName">First Name:</label>
-                  <input type="text" formControlName="firstName" class="form-control">
-                  <span  
-                  *ngIf="!registerForm.get('registerData.firstName').valid  
-                      && registerForm.get('registerData.firstName').touched"
-                        class="help-block"> Please enter a valid First Name</span>
-              </div>
-
-            <!-- Last Name of the user -->
-              <div class="form-group col-md-6 col-xs-12 col-sm-12" >
-                  <label for="lastName">Last Name:</label>
-                  <input type="text" formControlName="lastName" class="form-control">
-                  <span  
-                  *ngIf="!registerForm.get('registerData.lastName').valid  
-                      && registerForm.get('registerData.lastName').touched"
-                        class="help-block"> Please enter a valid Last Name</span>
-              </div>
-        </div>
-
-          <!-- User name of the user -->
-          <div class="form-group">
-            <label for="username">User Name:</label>
-            <input type="userName" formControlName="userName" class="form-control">
-            <span  
-            *ngIf="!registerForm.get('registerData.userName').valid  
-                && registerForm.get('registerData.userName').touched"
-                  class="help-block"> Please provide unique username</span>
+        <div class="card">
+            <div class="card-header">
+                Register
+            </div>
+            <div class="card-body">
+              <form (ngSubmit)="onUserRegister()" [formGroup]="registerForm">
+                <div formGroupName="registerData">  
+          
+                  <div class="row">
+                    <!-- First Name of User -->
+                        <div class="form-group col-md-6 col-xs-12 col-sm-12">
+                            <label for="firstName">First Name:</label>
+                            <input type="text" formControlName="firstName" class="form-control">
+                            <span  
+                            *ngIf="!registerForm.get('registerData.firstName').valid  
+                                && registerForm.get('registerData.firstName').touched"
+                                  class="help-block"> Please enter a valid First Name</span>
+                        </div>
+          
+                      <!-- Last Name of the user -->
+                        <div class="form-group col-md-6 col-xs-12 col-sm-12" >
+                            <label for="lastName">Last Name:</label>
+                            <input type="text" formControlName="lastName" class="form-control">
+                            <span  
+                            *ngIf="!registerForm.get('registerData.lastName').valid  
+                                && registerForm.get('registerData.lastName').touched"
+                                  class="help-block"> Please enter a valid Last Name</span>
+                        </div>
+                  </div>
+          
+                    <!-- User name of the user -->
+                    <div class="form-group">
+                      <label for="username">User Name:</label>
+                      <input type="userName" formControlName="userName" class="form-control">
+                      <span  
+                      *ngIf="!registerForm.get('registerData.userName').valid  
+                          && registerForm.get('registerData.userName').touched"
+                            class="help-block"> Please provide unique username</span>
+                    </div>
+          
+                    <!-- Email address of the user -->
+                    <div class="form-group">
+                      <label for="email">Email Address:</label>
+                      <input type="email" formControlName="emailAddress" class="form-control">
+                      <span  
+                      *ngIf="!registerForm.get('registerData.emailAddress').valid  
+                          && registerForm.get('registerData.emailAddress').touched"
+                            class="help-block"> Please enter a valid Email Address</span>
+                    </div>
+            
+                    <!-- Password of the user -->
+                    <div class="form-group">
+                      <label for="password">Password:</label>
+                      <input type="password" formControlName="password" class="form-control">
+                      <span  
+                      *ngIf="!registerForm.get('registerData.password').valid  
+                          && registerForm.get('registerData.password').touched"
+                            class="help-block"> Please enter a valid Password</span>
+                    </div>
+            
+                    <!-- Confirm Password of the user -->
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password:</label>
+                        <input type="password" formControlName="confirmPassword" class="form-control">
+                        <span  
+                        *ngIf="!registerForm.get('registerData.confirmPassword').valid  
+                            && registerForm.get('registerData.confirmPassword').touched"
+                              class="help-block"> Passwords do not match.</span>
+                    </div>
+            
+                    <!-- Phone number of the user -->
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="text" formControlName="phoneNumber" class="form-control" maxlength="10">
+                        <span  
+                        *ngIf="!registerForm.get('registerData.phoneNumber').valid  
+                            && registerForm.get('registerData.phoneNumber').touched"
+                              class="help-block"> Please enter a valid phone number</span>
+                    </div>
+          
+                    <!-- calendar for date of birth -->
+                    <div class="form-group col-md-6 col-sm-8 col-xs-12">
+                      <label for="dob">Date Of Birth:</label>
+                      <input type="date" formControlName="dateOfBirth" class="form-control" >
+                      <span  
+                      *ngIf="!registerForm.get('registerData.dateOfBirth').valid  
+                          && registerForm.get('registerData.dateOfBirth').touched"
+                            class="help-block"> Please enter a valid date of birth</span>
+                    </div>
+          
+                </div>
+                  
+                <button class="btn btn-primary" type="submit" 
+                    [disabled]="!registerForm.valid">Register</button>
+                
+                <br>
+                
+                <div *ngIf="registrationFormError" class="alert alert-danger">{{registrationFormError}}</div>
+                </form>
+            </div>
           </div>
-
-          <!-- Email address of the user -->
-          <div class="form-group">
-            <label for="email">Email Address:</label>
-            <input type="email" formControlName="emailAddress" class="form-control">
-            <span  
-            *ngIf="!registerForm.get('registerData.emailAddress').valid  
-                && registerForm.get('registerData.emailAddress').touched"
-                  class="help-block"> Please enter a valid Email Address</span>
-          </div>
-  
-          <!-- Password of the user -->
-          <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" formControlName="password" class="form-control">
-            <span  
-            *ngIf="!registerForm.get('registerData.password').valid  
-                && registerForm.get('registerData.password').touched"
-                  class="help-block"> Please enter a valid Password</span>
-          </div>
-  
-          <!-- Confirm Password of the user -->
-          <div class="form-group">
-              <label for="confirmPassword">Confirm Password:</label>
-              <input type="password" formControlName="confirmPassword" class="form-control">
-              <span  
-              *ngIf="!registerForm.get('registerData.confirmPassword').valid  
-                  && registerForm.get('registerData.confirmPassword').touched"
-                    class="help-block"> Passwords do not match.</span>
-          </div>
-  
-          <!-- Phone number of the user -->
-          <div class="form-group">
-              <label for="phone">Phone Number:</label>
-              <input type="text" formControlName="phoneNumber" class="form-control" maxlength="10">
-              <span  
-              *ngIf="!registerForm.get('registerData.phoneNumber').valid  
-                  && registerForm.get('registerData.phoneNumber').touched"
-                    class="help-block"> Please enter a valid phone number</span>
-          </div>
-
-          <!-- calendar for date of birth -->
-          <div class="form-group col-md-6 col-sm-8 col-xs-12">
-            <label for="dob">Date Of Birth:</label>
-            <input type="date" formControlName="dateOfBirth" class="form-control" >
-            <span  
-            *ngIf="!registerForm.get('registerData.dateOfBirth').valid  
-                && registerForm.get('registerData.dateOfBirth').touched"
-                  class="help-block"> Please enter a valid date of birth</span>
-          </div>
-
+      
       </div>
-        
-      <button class="btn btn-primary" type="submit" 
-          [disabled]="!registerForm.valid">Register</button>
-      
-      <br>
-      
-      <div *ngIf="registrationFormError" class="alert alert-danger">{{registrationFormError}}</div>
-      </form>
+    </div>
   </div>
 </div>
+
+

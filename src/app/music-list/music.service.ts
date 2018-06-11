@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Http, Response } from "@angular/http";
+// import { Http, Response } from "@angular/http";
 import { Subject } from "rxjs/Subject";
 import 'rxjs/Rx';
 
@@ -13,19 +13,19 @@ export class MusicService {
     musicAlbumListChange = new Subject<Album[]>();
     musicTrackListChange = new Subject<Track[]>();
 
-    constructor(private http : Http){};
+    constructor(){};
 
     getMusicAlbumList (){
-        this.http.get("../../assets/songs.json")
-            .map(
-                (response: Response) => {
-                    const tracks : Track[] = response.json();
-                    return tracks;
-                }).subscribe(
-                    (tracksResponse: Track[]) => {
-                        this.setTrackList(tracksResponse["track"]);
-                    }
-                );
+        // this.http.get("../../assets/songs.json")
+        //     .map(
+        //         (response: Response) => {
+        //             const tracks : Track[] = response.json();
+        //             return tracks;
+        //         }).subscribe(
+        //             (tracksResponse: Track[]) => {
+        //                 this.setTrackList(tracksResponse["track"]);
+        //             }
+        //         );
     }
 
     setTrackList(tracks: Track[]){

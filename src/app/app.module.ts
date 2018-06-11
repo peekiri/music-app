@@ -20,6 +20,8 @@ import { MusicService } from './music-list/music.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './shared/interceptors/jwtinterceptor';
 import { HttpHeaderInterceptor } from "./shared/interceptors/httpheaderinterceptor";
+import { AdmindashboardComponent } from './dashboard/admindashboard/admindashboard.component';
+import { UserdashboardComponent } from './dashboard/userdashboard/userdashboard.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { HttpHeaderInterceptor } from "./shared/interceptors/httpheaderintercept
     DashboardComponent,
     DashboardheaderComponent,
     AlbumComponent,
-    TrackComponent
+    TrackComponent,
+    AdmindashboardComponent,
+    UserdashboardComponent
   ],
   imports: [
     BrowserModule,
